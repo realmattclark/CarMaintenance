@@ -3,20 +3,31 @@ var path = require("path");
 // Routes
 // =============================================================
 module.exports = function(app) {
-	// Each of the below routes just handles the HTML page that the user gets sent to.
+	// routes for user pages
 
-	// index route loads index.html
+	// route loads login.html to login
 	app.get("/", function(req, res) {
+		res.sendFile(path.join(__dirname, "../public/login.html"));
+	});
+
+	// signup page route loads signUp.html
+	app.get("/newUser", function(req, res) {
+		res.sendFile(path.join(__dirname, "../public/signUp.html"));
+	});
+
+	// homepage route loads index.html
+	app.get("/home", function(req, res) {
 		res.sendFile(path.join(__dirname, "../public/index.html"));
 	});
 
-	// play route loads play.html
-	app.get("/play", function(req, res) {
-		res.sendFile(path.join(__dirname, "../public/play.html"));
+	// addCar.html route
+	app.get("/AddCar", function(req, res) {
+		res.sendFile(path.join(__dirname, "../public/addCar.html"));
 	});
 
-	// scores route loads scores.html
-	app.get("/scores", function(req, res) {
-		res.sendFile(path.join(__dirname, "../public/scores.html"));
-	});
+	// addMaint.html route
+	app.get("/AddMaintenance", function(req, res) {
+		res.sendFile(path.join(__dirname, "../public/addMaint.html"));
+	})
+
 };
