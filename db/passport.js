@@ -2,8 +2,8 @@
 // config/passport.js
 
 // load all the things we need
-var LocalStrategy   = require("passport-local").Strategy;
-
+var LocalStrategy = require("passport-local").Strategy;
+var routes = require("../routes");
 var mysql = require("mysql");
 
 var connection = mysql.createConnection({
@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 	password : "mclark1250"
 });
 
-connection.query("USE blackjackApp");	
+connection.query("USE login_info");	
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -103,7 +103,8 @@ module.exports = function(passport) {
 			if (!( rows[0].password == password))
 				return done(null, false, req.flash("loginMessage", "Oops! Wrong password.")); // create the loginMessage and save it to session as flashdata
 			// all is well, return successful user
-			return done(null, rows[0]);			
+			return done(null, rows[0]);
+			res.redirect("../public/home");		
 		});
 	}));
 };
