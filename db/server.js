@@ -16,6 +16,16 @@ var connection = mysql.createConnection({
     database: "login_info"
 });
 
+
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+
 connection.connect(function(err) {
     if (err) throw err;
     console.log("Connected as id " + connection.threadId);
